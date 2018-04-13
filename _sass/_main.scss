@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,600');
+/*===================================
+        VARIABLES
+  ===================================*/
+$txtcolor: #101010;
+$gold: #f7be40;
+$gold2: #e38c25;
+$headermax: 1440px;
+$multiplier: 1.5;
+
+$breakpoints: (
+  mobile: 480px,
+  tablet: 767px,
+  computer: 992px,
+  large: 1200px,
+  huge: 1439px,
+  wide: 1920px
+);
+
+
+
+@font-face {
+    font-family: 'Pure Heart';
+    src: url('./fonts/pureheart.woff2') format('woff2'),
+         url('./fonts/pureheart.woff') format('woff'),
+         url('./fonts/pureheart.ttf') format('truetype'),
+         url('./fonts/pureheart.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html{
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body{
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.45;
+  color: $txtcolor;
+  @media screen and (min-width: map_get($breakpoints,"tablet")) {
+    font-size: 1.6rem;
+  }
+  @media screen and (min-width: map_get($breakpoints,"computer")) {
+    overflow: hidden;
+  }
+}
+h1,h2,h3,h4,h5{
+  line-height: 1.2;
+}
+h2,h3,h4,h5{
+  font-weight: 600;
+}
+h1{
+  font-family: "Pure Heart", Helvetica, sans-serif;
+  font-weight: 400;
+  position: relative;
+  background: -webkit-linear-gradient(to right, $gold, $gold2);
+  background: linear-gradient(to right, $gold, $gold2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Safari */
+  -webkit-transform: rotate(-5deg);
+  /* Firefox */
+  -moz-transform: rotate(-5deg);
+  /* IE */
+  -ms-transform: rotate(-5deg);
+  /* Opera */
+  -o-transform: rotate(-5deg);
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+/*h1 {font-size: 6.85rem;}
+h3 {font-size: 4.23rem;}
+h4 {font-size: 2.618rem;}
+h5 {font-size: 1.618rem;}*/
+h1{ font-size: 9rem}
+h2{ font-size: 3.2rem}
+h3{ font-size: 2.6rem}
+h4{ font-size: 2.2rem}
+
+@media screen and (min-width: map_get($breakpoints,"tablet")) {
+  h2{ font-size: 4rem}
+  h3{ font-size: 3.2rem}
+  h4{ font-size: 2.4rem}
+}
+
+@media screen and (min-width: map_get($breakpoints,"computer")) {
+  h2{ font-size: 4.8rem}
+  h3{ font-size: 3.6rem}
+  h4{ font-size: 2.8rem}
+}
+
+
+/*
+ Flexbox fallback
+ */
+@supports not (display: grid)
+{
+
+}
+
+/*
+ Vertical nagivation
+ */
+
+.hamburger{
+    background-image: url("./img/hamburger.png"); /* fallback */
+    background-size: 100px 50px;
+    width: 50px;
+    height: 50px;
+    background-position: 0 0;
+    margin: 0 auto;
+    cursor: pointer;
+    @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
+        background: url('./img/hamburger-retina.png') no-repeat;
+        background-size: 100px 50px;
+    }
+  &.close{
+    flex: 1;
+    order: 2;
+    align-self: flex-start;
+    flex-basis: 50px;
+    flex-grow: 0;
+    background-position: -50px 0;
+    margin-top: 0.8rem;
+  }
+  &.open{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 0.8rem;
+    margin-left: 0.8rem;
+    z-index: 3;
+  }
+
+}
+nav{
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 65%;
+  left: -65%;
+  opacity: 0;
+  
+  z-index: 3;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  ul{
+    padding: 0;
+    margin: 0;
+    margin-right: 0.8rem;
+    list-style-type: none;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    flex: 2;
+    background: $txtcolor;
+    order: 1;
+    li{
+      flex: auto;
+      text-align: center;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      &.item{
+      }
+      a{
+        flex: 0 1 auto;
+        text-decoration: none;
+        text-transform: capitalize;
+        font-weight: 500;
+      }
+    }
+
+  }
+  .deadspace{
+    flex: 1;
+    flex-basis: 20px;
+    flex-grow: 0;
+    background: $txtcolor;
+    margin: 0;
+    padding:0;
+    font-size: 0;
+  }
+  .logo{
+    background: url("./img/logo.png");
+        background-size: 100px 54px;
+        width: 100px;
+        height: 54px;
+        margin: 0 auto;
+        @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
+            background: url('./img/logo-retina.png') no-repeat;
+            background-size: 100px 54px;
+        }
+  }
+  @media screen and(min-width:map_get($breakpoints,"tablet") )
+  {
+    width: 22rem;
+    left: -22rem;
+  }
+  @media screen and(min-width:map_get($breakpoints,"large") )
+  {
+    width: 27rem;
+    left: -27rem;
+  }
+}

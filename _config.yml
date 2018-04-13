@@ -16,9 +16,9 @@
 title: José Striedinger
 email: jose@comunidadget.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Apasionado trabajando en educación en industrias creativas en Colombia. Emprendedor fundador de GET Education, ganador
+  Fondo Emprender 2017, participante becado de programas de emprendimiento en Silicon Valley y Kuala Lumpur, y
+  speaker de emprendimiento en mas de 5 universidades colombianas. Ing. de Sistemas de profesion, pero diseñador de corazón.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jstriedinger
@@ -28,7 +28,8 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
-exclude: ['node_modules']
+  - jekyll-seo-tag
+exclude: ['node_modules', '*.sublime-project']
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

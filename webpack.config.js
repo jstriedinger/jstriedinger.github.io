@@ -6,23 +6,46 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  context: path.resolve(__dirname, "assets"),
   // webpack folder's entry js - excluded from jekll's build process.
-  entry: "./webpack/entry.js",
+  entry: {
+     home: '../webpack/home.js',
+     loader: '../webpack/loader.js',
+  },
   output: {
     // we're going to put the generated file in the assets folder so jekyll will grab it.
-      path: path.resolve(__dirname, 'assets/javascripts/'),
-      filename: "bundle.js"
+      path: path.resolve(__dirname, 'assets/js/'),
+      filename: './[name].js',
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        options: {
-            presets: ['env']
-        } 
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            { loader: 'css-loader', options: { url: false, sourceMap: true } }, 
+            { loader: 'postcss-loader', options: { sourceMap: true } },
+            { loader: 'sass-loader', options: { sourceMap: true } }
+            ]
+        })
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+              loader: 'babel-loader',
+              options: {
+                  presets: ['env']
+              }   
+          }
+        ]
       }
     ]
-  }
+  },
+  plugins: [
+    require('autoprefixer'),
+    new ExtractTextPlugin("../css/[name].css"),
+  ]
 };

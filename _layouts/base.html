@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang='{{ page.lang | default: site.lang | default: "es" }}' class="no-js">
+	{% include head.html %}
+    <body >
+        {% include navigation.html %}
+		{{ content }}
+		<script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
+		<script src="{{ '/assets/js/bundle.js' | relative_url }}"></script>
+    </body>
+</html>
