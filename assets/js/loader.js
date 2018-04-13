@@ -1,84 +1,57 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */,
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
+//loader before anything
+var pageStatus = null;
+var progress = null;
+var animationInterval = 33;
 
 
-__webpack_require__(3);
+function updateProgress(){
+    if(pageStatus == "complete"){
+        document.getElementById("progress").style.right = "-200px";
+    }
+    else{            
+        if(progress == null){
+            progress = 1;
+        }
+        
+        progress = progress + 1;
+        if(progress >= 0 && progress <= 30){
+            animationInterval += 1;
+            document.getElementById("progress").style.right = "-"+(progress*2)+"px";
+        }
+        else if(progress > 30 && progress <= 60){
+            animationInterval += 2;
+            document.getElementById("progress").style.right = "-"+(progress*2)+"px";
+        }
+        else if(progress > 60 && progress <= 80){
+            animationInterval += 3;
+            document.getElementById("progress").style.right = "-"+(progress*2)+"px";
+        }
+        else if(progress > 80 && progress <= 90){
+            animationInterval += 4;
+            document.getElementById("progress").style.right = "-"+(progress*2)+"px";
+        }
+        else if(progress > 90 && progress <= 95){
+            animationInterval += 80;
+            document.getElementById("progress").style.right = "-"+(progress*2)+"px";
+        }
+        else if(progress > 95 && progress <= 99){
+            animationInterval += 150;
+            document.getElementById("progress").style.right = "-"+(progress*2)+"px";
+        }
+        else if(progress >= 100){
+            document.getElementById("progress").style.right = "-198px";
+        }
+        setTimeout(updateProgress, animationInterval);    
+    }
+}
 
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
+var intervalObject_1 = setInterval(function(){
+    var element = document.querySelector("body");
+    
+    if(element != undefined){
+        clearInterval(intervalObject_1);
+        element.innerHTML += "<div id='pageloader'><div id='loader'><div id='progress'></div></div></dvi>";
+        updateProgress();        
 
-// removed by extract-text-webpack-plugin
-
-/***/ })
-/******/ ]);
+    }
+}, 30);

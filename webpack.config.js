@@ -10,7 +10,7 @@ module.exports = {
   // webpack folder's entry js - excluded from jekll's build process.
   entry: {
      home: '../webpack/home.js',
-     loader: '../webpack/loader.js',
+     pageloader: '../webpack/loader.js',
   },
   output: {
     // we're going to put the generated file in the assets folder so jekyll will grab it.
@@ -43,6 +43,9 @@ module.exports = {
         ]
       }
     ]
+  },
+  externals: {
+    jquery: 'jQuery'
   },
   plugins: [
     require('autoprefixer'),

@@ -1,7 +1,6 @@
 ---
 layout: base
 ---
-<h1>HOME</h1>
 {% for item in page.modules %}
 {% assign foo = item | append: '.html' %}
 {% include {{foo}} %}
