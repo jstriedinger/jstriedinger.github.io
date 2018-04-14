@@ -1,7 +1,9 @@
 ---
 layout: base
 ---
-{% for item in page.modules %}
-{% assign foo = item | append: '.html' %}
-{% include {{foo}} %}
-{% endfor %}
+<main>
+	{% for item in page.modules %}
+	{% assign foo = item | append: '.html' %}
+	{% include {{foo}} %}
+	{% endfor %}
+</main>

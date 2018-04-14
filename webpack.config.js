@@ -47,8 +47,18 @@ module.exports = {
   externals: {
     jquery: 'jQuery'
   },
+  watch: true,
   plugins: [
     require('autoprefixer'),
     new ExtractTextPlugin("../css/[name].css"),
+    new BrowserSyncPlugin({
+        server: '_site/',
+        files: [
+          '_site/**/*.*'
+        ],
+        logPrefix: 'webpack',
+        logLevel: 'debug',
+        ghostMode: false
+    })
   ]
 };

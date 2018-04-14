@@ -34,8 +34,8 @@ h1 {
   font-family: "Pure Heart", Helvetica, sans-serif;
   font-weight: 400;
   position: relative;
-  background: -webkit-gradient(linear, left top, right top, from(#f7be40), to(#e38c25));
-  background: linear-gradient(to right, #f7be40, #e38c25);
+  background: -webkit-gradient(linear, left top, right top, from(#b99458), to(#ebb968));
+  background: linear-gradient(to right, #b99458, #ebb968);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   /* Safari */
@@ -299,11 +299,11 @@ nav {
 }
 */
 a {
-  color: #f7be40;
+  color: #b99458;
   -webkit-transition: color 0.8s ease;
   transition: color 0.8s ease; }
   a:hover, a:active, a:focus {
-    color: #e38c25; }
+    color: #ebb968; }
 
 main {
   padding: 0 1rem;
