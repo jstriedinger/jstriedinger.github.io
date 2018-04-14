@@ -2089,8 +2089,12 @@ var specs = { width: 0, height: 0 };
 
 var OnMouseWheel = /Firefox/i.test(navigator.userAgent) ? "DOMMouseScroll" : "mousewheel"; //FF doesn't recognize mousewheel as of FF3.x
 
-
-function showSection(i) {
+/**
+ * Show a specific section of the page
+ * @param  int i   index of the section
+ * @param  boolean dir direction to now if it going next or previous section
+ */
+function showSection(i, dir) {
     _scrolling = true;
     console.log("From section: " + _sections[_curSectionIndex] + " - " + _curSectionIndex);
     if (_isMobile) {
@@ -2107,10 +2111,18 @@ function showSection(i) {
                 _scrolling = false;
                 console.log("Current section index: " + _curSectionIndex);
             } });
-        tll2.staggerTo("#" + _sections[_curSectionIndex] + "> *", 0.8, { y: -200, opacity: 0, clearProps: 'y' }, 0.4);
-        tll2.to(window, 0.2, { scrollTo: "#" + _sections[i] });
-        tll2.staggerFrom("#" + _sections[i] + "> *", 0.8, { y: 200 }, 0.4, "same");
-        tll2.staggerTo("#" + _sections[i] + "> *", 0.8, { opacity: 1 }, 0.4, "same");
+        if (dir) {
+            //Next
+            tll2.staggerTo("#" + _sections[_curSectionIndex] + "> *", 0.8, { y: -200, opacity: 0, clearProps: 'y' }, 0.4);
+            tll2.to(window, 0.2, { scrollTo: "#" + _sections[i] });
+            tll2.staggerFrom("#" + _sections[i] + "> *", 0.8, { y: 200 }, 0.4, "same");
+            tll2.staggerTo("#" + _sections[i] + "> *", 0.8, { opacity: 1 }, 0.4, "same");
+        } else {
+            tll2.staggerTo("#" + _sections[_curSectionIndex] + "> *", 0.8, { y: 200, opacity: 0, clearProps: 'y' }, 0.4);
+            tll2.to(window, 0.2, { scrollTo: "#" + _sections[i] });
+            tll2.staggerFrom("#" + _sections[i] + "> *", 0.8, { y: -200 }, 0.4, "same");
+            tll2.staggerTo("#" + _sections[i] + "> *", 0.8, { opacity: 1 }, 0.4, "same");
+        }
         tll2.play();
     }
 }
@@ -2118,13 +2130,13 @@ function showSection(i) {
 var iterify = function iterify() {
     _sections.next = function () {
         if (_curSectionIndex < this.length - 1 && !_scrolling) {
-            showSection(_curSectionIndex + 1);
+            showSection(_curSectionIndex + 1, true);
         }
         return false;
     };
     _sections.prev = function () {
         if (_curSectionIndex > 0 && !_scrolling) {
-            showSection(_curSectionIndex - 1);
+            showSection(_curSectionIndex - 1, false);
         }
         return false;
     };
@@ -2132,7 +2144,7 @@ var iterify = function iterify() {
     _sections.goTo = function (section) {
         var i = _sections.indexOf(section);
         if (i > -1 && _curSectionIndex != i && !_scrolling) {
-            showSection(i);
+            if (i < _curSectionIndex) showSection(i, false);else showSection(i, true);
         }
     };
     return _sections;

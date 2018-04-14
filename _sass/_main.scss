@@ -62,16 +62,10 @@ h1{
   background: linear-gradient(to right, $gold, $gold2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Safari */
-  -webkit-transform: rotate(-5deg);
-  /* Firefox */
-  -moz-transform: rotate(-5deg);
-  /* IE */
-  -ms-transform: rotate(-5deg);
-  /* Opera */
-  -o-transform: rotate(-5deg);
-  /* Internet Explorer */
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+
+  transform: rotate(-2deg)
+  
 }
 
 /*h1 {font-size: 6.85rem;}
