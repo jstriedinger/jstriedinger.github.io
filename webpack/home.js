@@ -277,10 +277,13 @@ window.document.addEventListener("readystatechange", function(){
     		var tll = new TimelineMax({onComplete: function(){
                 document.getElementById('pageloader').parentNode.removeChild(document.getElementById('pageloader'));
                 $("h1.title span.progress").remove();
+                $(".cover").remove();
     		}});
     		tll.to("#loader",1.2,{top:"-60%",opacity:0, ease: Back.easeIn.config(1.4)});
             tll.to("#pageloader",0.6,{opacity:0});
     		tll.staggerTo("#home h1.title span.progress",1.8,{left:"100%"}, 0.9);
+            tll.to(".cover",0.6,{opacity:0});
+
     		tll.play();
             
             

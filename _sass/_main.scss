@@ -41,12 +41,22 @@ body{
   font-size: 1.4rem;
   line-height: 1.45;
   color: $txtcolor;
+  background: url("./img/body.jpg") center center fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
   @media screen and (min-width: map_get($breakpoints,"tablet")) {
     font-size: 1.6rem;
   }
   @media screen and (min-width: map_get($breakpoints,"computer")) {
     overflow: hidden;
   }
+}
+.cover{
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: white;
 }
 h1,h2,h3,h4,h5{
   line-height: 1.2;
@@ -58,14 +68,23 @@ h1{
   font-family: "Pure Heart", Helvetica, sans-serif;
   font-weight: 400;
   position: relative;
-  background: -webkit-linear-gradient(to right, $gold, $gold2);
-  background: linear-gradient(to right, $gold, $gold2);
+  background: -webkit-linear-gradient(to right, $gold, $gold2, $gold2);
+  background: linear-gradient(to right, $gold, $gold2, $gold2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
 
-  transform: rotate(-2deg)
-  
+  transform: rotate(-5deg);
+  /* Safari */
+  -webkit-transform: rotate(-5deg);
+  /* Firefox */
+  -moz-transform: rotate(-5deg);
+  /* IE */
+  -ms-transform: rotate(-5deg);
+  /* Opera */
+  -o-transform: rotate(-5deg);
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 /*h1 {font-size: 6.85rem;}
